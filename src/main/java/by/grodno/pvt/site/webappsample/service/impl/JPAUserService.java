@@ -35,62 +35,32 @@ public class JPAUserService implements UserService, InitializingBean {
 	@Autowired
 	private EmailService emailService;
 
+
 	@Override
 	public void addUser(List<User> users) {
 		repo.saveAll(users);
 	}
-
 	@Override
 	public List<User> getUsers() {
 		return repo.findAll();
 	}
-
 	@Override
 	public void deleteUser(Integer number) {
 		repo.deleteById(number);
 	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		repo.save(getUser("max@max.max", "Maxim"));
-		repo.save(getUser("max1@max.max", "Naxim"));
-		repo.save(getUser("max2@max.max", "Baxim"));
-		repo.save(getUser("max3@max.max", "Eaxim"));
-		repo.save(getUser("max4@max.max", "IMaxim"));
-		repo.save(getUser("max5@max.max", "Maxim"));
-		repo.save(getUser("ma6@max.max", "Saxim"));
-		repo.save(getUser("max7@max.max", "Oaxim"));
-		repo.save(getUser("max8@max.max", "Maxim"));
-		repo.save(getUser("max9@max.max", "Waxim"));
-		repo.save(getUser("max0@max.max", "Maxim"));
-		repo.save(getUser("max12@max.max", "Aaxim"));
-		repo.save(getUser("max13@max.max", "Maxim"));
-		repo.save(getUser("max14@max.max", "Vaxim"));
-	}
-
-	private User getUser(String email, String firstName) {
-		User oldUser = new User(null, firstName, "Naumovich", email, null, UserRole.ADMIN, null, new Date());
-		UserCredentials userCredentials = new UserCredentials(null, new Date(), true, "max");
-		oldUser.setCredentials(Collections.singletonList(userCredentials));
-		return oldUser;
-	}
-
 	@Override
 	public User getUser(Integer id) {
 		return repo.getOne(id);
 	}
-
 	@Override
 	public void saveUser(User user) {
 		repo.save(user);
 		// emailService.sendUserActivationEmail(user);
 	}
-
 	@Override
 	public Optional<User> findByEmail(String email) {
 		return Optional.ofNullable(repo.findByEmail(email));
 	}
-
 	@Override
 	public void activateUser(Integer id) {
 		Optional<User> findById = repo.findById(id);
@@ -101,9 +71,7 @@ public class JPAUserService implements UserService, InitializingBean {
 			credRepo.save(next);
 			return user;
 		}).orElseThrow(() -> new UserNotFoundException());
-
 	}
-
 	@Override
 	public Page<User> getUsersPage(Integer pageNum, Integer size, String fieldName, Sort.Direction direction) {
 		Pageable pagable;
@@ -114,16 +82,37 @@ public class JPAUserService implements UserService, InitializingBean {
 		} else {
 			pagable = PageRequest.of(pageNum, size);
 		}
-
 		return repo.findAll(pagable);
 	}
-
 	@Override
 	public void edit(UserDTO userDTO) {
 		User findById = repo.findById(userDTO.getId()).orElseThrow(() -> new UserNotFoundException());
 		findById.setFirstName(userDTO.getFirstName());
 		findById.setLastName(userDTO.getLastName());
 		repo.save(findById);
+	}
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		repo.save(getUser("max@max.max", "Brad", "Ivanov"));
+		repo.save(getUser("max1@max.max", "Antonio", "Sidorov"));
+		repo.save(getUser1("admin@admin.com", "Admin", "Adminovich"));
+
+//		cardRepo.save(new UserCards(null, "Viza", 220.0, 2025,true));
+//		cardRepo.save(new UserCards(null, "Maestro", 999.1, 2030,true));
+//		cardRepo.save(new UserCards(null, "BelCard", 10.5, 2022,false));
+	}
+
+	private User getUser(String email, String firstName, String lastName) {
+		User oldUser = new User(null, firstName, lastName, email, null, UserRole.ADMIN, null, new Date());
+		UserCredentials userCredentials = new UserCredentials(null, new Date(), true, "0000");
+		oldUser.setCredentials(Collections.singletonList(userCredentials));
+		return oldUser;
+	}
+	private User getUser1(String email, String firstName, String lastName) {
+		User oldUser = new User(null, firstName, lastName, email, null, UserRole.ADMIN, null, new Date());
+		UserCredentials userCredentials = new UserCredentials(null, new Date(), true, "admin");
+		oldUser.setCredentials(Collections.singletonList(userCredentials));
+		return oldUser;
 	}
 
 }

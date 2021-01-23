@@ -48,8 +48,15 @@ public class User {
 
 	private UserRole role;
 
-	@OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
 	private UserPicture picture;
 
 	private Date birthdate;
+
+
+//
+//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "ownerUser")
+//	private List<UserCards> userCards;
+
+
 }
