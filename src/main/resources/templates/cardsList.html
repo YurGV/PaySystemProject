@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title th:text="#{label.getting.started}">Getting Started: Serving Web Content ORIGINAL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<th:block th:insert="fragments/header.html :: css" />
+
+<body style="background-image: url('/img/back.jpg');">
+
+	<th:block th:insert="fragments/navBar.html :: navBar" />
+
+	<br />
+	<br />
+
+	<div class="container" style="background-color: grey;">
+		<div class="row">
+
+			<div class="border col-lg-1">Id</div>
+			<div class="border col-lg-2">
+				<a class="p-2" th:href="@{'/users'+'?fieldName=cardName'}" >Card name</a>
+			</div>
+			<div class="border col-lg-1" >Balance</div>
+			<div class="border col-lg-1" >Valid</div>
+			<div class="border col-lg-1" >Lock</div>
+			<div class="border col-lg-1" >Edit</div>
+			<div class="border col-lg-1">Buy user</div>
+			<div class="border col-lg-3" >Upload img</div>
+		</div>
+
+
+		<div class="row" th:each="userCards : ${cards}" align=center>
+			<div class="border col-lg-1" th:text="${userCards.id}"></div>
+			<div class="border col-lg-2" th:text="${userCards.cardName}"></div>
+			<div class="border col-lg-1" th:text="${userCards.balance}"></div>
+			<div class="border col-lg-1" th:text="${userCards.valid}"></div>
+			<div class="border col-lg-1" th:text="${userCards.lock}"></div>
+
+			<div class="border col-lg-1">
+				<a class="btn btn-link"
+				   th:href="@{/card/{id}(id=${userCards.id})}">Edit</a>
+			</div>
+			<div class="border col-lg-1">
+				<a class="btn btn-link">Buy</a>
+			</div>
+			<div class="border col-lg-3" >
+				<input type="submit" value="Upload" />
+			</div>
+		</div>
+	<br />
+	<br />
+	</div>
+	</body>
+</html>
