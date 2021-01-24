@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title th:text="#{label.getting.started}">Getting Started: Serving Web Content ORIGINAL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<th:block th:insert="fragments/header.html :: css" />
+<body>
+	<th:block th:insert="fragments/navBar.html :: navBar" />
+
+	<br />
+	<br />
+
+	<div class="container" style="background-color: grey;">
+		<div class="row">
+			<div class="border col-lg-1">Id</div>
+			<div class="border col-lg-2">Date</div>
+			<div class="border col-lg-2" >Value</div>
+			<div class="border col-lg-2" >Procedure</div>
+		</div>
+
+		<div class="row" th:each="transactions : ${trans}" align=center>
+			<div class="border col-lg-1" th:text="${transactions.id}"></div>
+			<div class="border col-lg-2" th:text="*{#dates.format(transactions.transactionDate, 'dd-MM-yyyy')}" ></div>
+			<div class="border col-lg-2" th:text="${transactions.value}"></div>
+			<div class="border col-lg-2" th:text="${transactions.procedure}"></div>
+		</div>
+
+	</div>
+
+	</body>
+</html>

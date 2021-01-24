@@ -1,11 +1,14 @@
 package by.grodno.pvt.site.webappsample.controller;
 
+import by.grodno.pvt.site.webappsample.domain.Transactions;
 import by.grodno.pvt.site.webappsample.domain.User;
 import by.grodno.pvt.site.webappsample.domain.UserCards;
 import by.grodno.pvt.site.webappsample.dto.CardDTO;
+import by.grodno.pvt.site.webappsample.dto.TransactionsDTO;
 import by.grodno.pvt.site.webappsample.dto.UserDTO;
 import by.grodno.pvt.site.webappsample.service.CardService;
 
+import by.grodno.pvt.site.webappsample.service.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 
@@ -15,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +29,8 @@ public class CardController {
     private ConversionService convertionService;
     @Autowired
     private CardService cardService;
+    @Autowired
+    private TransactionsService transService;
 
     @GetMapping("/cards")
     public String getAllCards(Model model) {
@@ -128,6 +134,12 @@ public class CardController {
     public String addMoney(@PathVariable Integer id,
                            @RequestParam(value="balance") Double balance) {
         cardService.updateBalancePlus(balance, id);
+
+        Transactions trans = new Transactions();
+        trans.setProcedure("receive");
+        trans.setTransactionDate(new Date());
+        trans.setValue(balance);
+        transService.saveTrans(trans);
         return "redirect:/cards";
     }
 
@@ -154,6 +166,15 @@ public class CardController {
                            @RequestParam(value="balance") Double balance) {
         cardService.updateBalanceMinus(balance, id);
         return "redirect:/cards";
+    }
+
+    @GetMapping("/transactions")
+    public String getAllTransactions(Model model) {
+
+        List<TransactionsDTO> trans = transService.getTrans().stream().map(u -> convertionService.convert(u, TransactionsDTO.class))
+                .collect(Collectors.toList());
+        model.addAttribute("trans", trans);
+        return "transactionsList";
     }
 
 
