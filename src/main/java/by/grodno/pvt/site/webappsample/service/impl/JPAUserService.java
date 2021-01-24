@@ -96,10 +96,6 @@ public class JPAUserService implements UserService, InitializingBean {
 		repo.save(getUser("max@max.max", "Brad", "Ivanov"));
 		repo.save(getUser("max1@max.max", "Antonio", "Sidorov"));
 		repo.save(getUser1("admin@admin.com", "Admin", "Adminovich"));
-
-//		cardRepo.save(new UserCards(null, "Viza", 220.0, 2025,true));
-//		cardRepo.save(new UserCards(null, "Maestro", 999.1, 2030,true));
-//		cardRepo.save(new UserCards(null, "BelCard", 10.5, 2022,false));
 	}
 
 	private User getUser(String email, String firstName, String lastName) {

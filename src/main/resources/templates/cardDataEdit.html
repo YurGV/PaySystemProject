@@ -17,6 +17,15 @@
 
 <form th:action="@{/card/edit/{id}(id=${userCards.id})}" method="post" th:object="${userCards}">
 
+
+    <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Id :</div>
+        <div class="col-sm  p-1">
+            <input type="text" th:field="*{id}" />
+        </div>
+    </div>
+
     <div class="row justify-content-center  p-1">
         <div class="col-sm  p-1 justify-content-end"
              style="text-align: right">Card name :</div>

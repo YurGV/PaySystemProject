@@ -62,7 +62,7 @@ public class CardController {
         card.setValid(valid);
         card.setLock(lock);
 
-        cardService.saveCard(card);
+        cardService.editCard(card);
         return "redirect:/cards";
     }
 
@@ -140,6 +140,19 @@ public class CardController {
     @GetMapping("/card/unlock/{id}")                        //изменение на статус UnLock
     public String editStatusUnlock(@PathVariable Integer id) {
         cardService.updateStatusCard(true, id);
+        return "redirect:/cards";
+    }
+
+    @GetMapping("/card/transfer/{id}")                        //изменение одного филда для id с редактирование на странице
+    public String transferMoneyForm(@PathVariable Integer id, Model model) {
+        model.addAttribute("userCards", cardService.getCard(id));
+        return "transfer";
+    }
+
+    @PostMapping("/card/transfer/{id}")
+    public String transferMoney(@PathVariable Integer id,
+                           @RequestParam(value="balance") Double balance) {
+        cardService.updateBalanceMinus(balance, id);
         return "redirect:/cards";
     }
 

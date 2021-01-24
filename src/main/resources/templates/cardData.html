@@ -65,7 +65,7 @@
 </form>
 
 <tr>
-    <a  class="btn btn-primary" > Edit One  </a>
+    <a  th:href="@{/card/transfer/{id}(id=${userCards.id})}"class="btn btn-primary" > Transfer money  </a>
     <a>    </a>
     <a th:href="@{/card/lock/{id}(id=${userCards.id})}" class="btn btn-warning"  >Lock card </a>
     <a>    </a>

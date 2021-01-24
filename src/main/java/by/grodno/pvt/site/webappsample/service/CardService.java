@@ -21,5 +21,11 @@ public interface CardService {
 
     void updateBalancePlus(Double balance, Integer id);
 
+    void updateBalanceMinus(Double balance, Integer id);
+
     void updateStatusCard(boolean lock, Integer id);
+
+    void editCard(UserCards card);
+
+
 }

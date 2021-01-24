@@ -27,6 +27,7 @@ public class UserCards {
 	@Column(name = "isLock")
 	private Boolean lock;
 
+
 //	@ManyToOne
 //	@JoinColumn(name = "user_id")
 //	private User ownerUser;
