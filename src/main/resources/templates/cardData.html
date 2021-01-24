@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Getting Started: Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<th:block th:insert="fragments/header.html :: css" />
+
+<body>
+
+<th:block th:insert="fragments/navBar.html :: navBar" />
+
+<div class="row justify-content-center  p-2	">Enter user details please...</div>
+
+<form th:action="@{/card/{id}(id=${userCards.id})}" method="post" th:object="${userCards}">
+
+    <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Id :</div>
+        <div class="col-sm  p-1">
+            <input type="text" th:field="*{id}" />
+        </div>
+
+    </div>
+
+
+    <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Card name :</div>
+        <div class="col-sm  p-1">
+            <input type="text" th:field="*{cardName}" />
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Balance :</div>
+        <div class="col-sm  p-1">
+            <input type="text" th:field="*{balance}" />
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Valid :</div>
+        <div class="col-sm  p-1">
+            <input type="text"  th:field="*{valid}" />
+        </div>
+    </div>
+
+
+    <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Lock status :</div>
+        <div class="col-sm  p-1">
+            <input type="text" th:field="*{lock}" />
+        </div>
+    </div>
+
+</form>
+
+<tr>
+    <a  class="btn btn-primary" > Edit One  </a>
+    <a>    </a>
+    <a class="btn btn-warning"  >Lock card </a>
+    <a>    </a>
+    <a  class="btn btn-info"  >Unlock card </a>
+    <a>    </a>
+    <a  class="btn btn-success" > Replenishment  </a>
+    <a>    </a>
+    <a  class="btn btn-danger" th:href="@{/card/delete/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" >Delete card </a>
+    <a>   </a>
+    <a  class="btn btn-secondary" th:href="@{/card/edit/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" >Edit card </a>
+
+
+
+</tr>
+
+</body>
+</html>
+

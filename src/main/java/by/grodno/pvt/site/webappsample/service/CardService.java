@@ -19,4 +19,5 @@ public interface CardService {
 
     void edit(CardDTO cardDTO);
 
+
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handing Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<center>
+    <h1>Add a new Card:</h1>
+
+    <form th:action="@{/cards/addCard}" th:object="${userCards}" method="post">
+
+
+        <p>cardName: <input type="text" th:field="*{cardName}" /></p>
+        <p>balance: <input type="text" th:field="*{balance}" /></p>
+        <p>valid: <input type="text" th:field="*{valid}" /></p>
+        <p>lock: <input type="text" th:field="*{lock}" /></p>
+
+        <p><input type="submit" value="Save" /> <input type="reset" value="Reset" /></p>
+    </form>
+
+</center>
+</body>
+</html>
+
+

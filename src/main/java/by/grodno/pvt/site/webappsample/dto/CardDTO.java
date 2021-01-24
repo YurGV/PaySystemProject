@@ -1,36 +1,21 @@
 package by.grodno.pvt.site.webappsample.dto;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 
 @Data
 public class CardDTO {
 
 	private Integer id;
+
+	@Length(min = 3, max = 20)
 	private String cardName;
+
 	private Double balance;
 	private Integer valid;
 	private Boolean lock;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public String getCardName() {
-		return cardName;
-	}
-
-	public Double getBalance() {
-		return balance;
-	}
-
-	public Integer getValid() {
-		return valid;
-	}
-
-	public Boolean getLock() {
-		return lock;
-	}
 }
 
 
