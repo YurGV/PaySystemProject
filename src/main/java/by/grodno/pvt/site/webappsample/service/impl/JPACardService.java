@@ -27,6 +27,7 @@ public class JPACardService implements CardService, InitializingBean {
     public UserCards getCard(Integer id) {
         return cardRepo.getOne(id);
     }
+    @Override
     public void addCard(List<UserCards> cards) {
         cardRepo.saveAll(cards);
     }

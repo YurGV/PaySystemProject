@@ -14,14 +14,16 @@ import java.util.List;
 @Entity
 @Table(name = "card_trans")
 
-public class CardTransactions {
+public class Transactions {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	private Date transactionDate;
+
 	private double value;
 
-	private Date transactionDate;
+	private String procedure;
 
 }
