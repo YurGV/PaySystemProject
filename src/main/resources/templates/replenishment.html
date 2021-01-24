@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Getting Started: Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<th:block th:insert="fragments/header.html :: css" />
+
+<body>
+
+<th:block th:insert="fragments/navBar.html :: navBar" />
+
+<div class="row justify-content-center  p-2	">Enter card details please...</div>
+
+<form th:action="@{/card/replenishment/{id}(id=${userCards.id})}" method="post" th:object="${userCards}">
+
+    <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Balance :</div>
+        <div class="col-sm  p-1">
+            <input type="text" th:field="*{balance}" />
+        </div>
+    </div>
+
+    <div class="row justify-content-center  p-1">
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </div>
+</form>
+
+<tr>
+
+
+</tr>
+
+</body>
+</html>

@@ -54,4 +54,9 @@ public class JPACardService implements CardService, InitializingBean {
         cardRepo.save(new UserCards(null, "Maestro", 999.1, 2030,true));
         cardRepo.save(new UserCards(null, "BelCard", 10.5, 2022,false));
     }
+
+    @Override
+    public void updateBalancePlus(Double balance, Integer id) {
+        cardRepo.updateBalancePlus(balance, id);
+    }
 }

@@ -46,45 +46,45 @@ public class CardController {
         model.addAttribute("userCards", cardService.getCard(id));
         return "cardDataEdit";
     }
-//    @PostMapping("/cards/edit/{id}")
-//    public String editCard(
-//            @PathVariable Integer id,
-//            @RequestParam(value="cardName") String cardName,
-//            @RequestParam(value="balance") Double balance,
-//            @RequestParam(value="valid") Integer valid,
-//            @RequestParam(value="lock") Boolean lock)
-//    {
-//
-//        CardDTO card = new CardDTO();
-//        card.setId(id);
-//        card.setCardName(cardName);
-//        card.setBalance(balance);
-//        card.setValid(valid);
-//        card.setLock(lock);
-//
-//        cardService.edit(card);
-//        return "redirect:/cards";
-//    }
-
     @PostMapping("/cards/edit/{id}")
-    public String editCard(@PathVariable Integer id, @Valid CardDTO cardDTO, BindingResult br, Model model) {
+    public String editCard(
+            @PathVariable Integer id,
+            @RequestParam(value="cardName") String cardName,
+            @RequestParam(value="balance") Double balance,
+            @RequestParam(value="valid") Integer valid,
+            @RequestParam(value="lock") Boolean lock)
+    {
 
-        if (br.hasErrors()) {
-            model.addAttribute("cardDTO", cardDTO);
-            return "cardDataEdit";
-        }
+        UserCards card = new UserCards();
+        card.setId(id);
+        card.setCardName(cardName);
+        card.setBalance(balance);
+        card.setValid(valid);
+        card.setLock(lock);
 
-        UserCards userCards = new UserCards();
-        userCards.setId(id);
-        userCards.setCardName(cardDTO.getCardName());
-        userCards.setBalance(cardDTO.getBalance());
-        userCards.setValid(cardDTO.getValid());
-        userCards.setLock(cardDTO.getLock());
-
-        cardService.edit(cardDTO);
-
+        cardService.saveCard(card);
         return "redirect:/cards";
     }
+
+//    @PostMapping("/cards/edit/{id}")
+//    public String editCard(@PathVariable Integer id, @Valid CardDTO cardDTO, BindingResult br, Model model) {
+//
+//        if (br.hasErrors()) {
+//            model.addAttribute("cardDTO", cardDTO);
+//            return "cardDataEdit";
+//        }
+//
+//        UserCards userCards = new UserCards();
+//        userCards.setId(id);
+//        userCards.setCardName(cardDTO.getCardName());
+//        userCards.setBalance(cardDTO.getBalance());
+//        userCards.setValid(cardDTO.getValid());
+//        userCards.setLock(cardDTO.getLock());
+//
+//        cardService.edit(cardDTO);
+//
+//        return "redirect:/cards";
+//    }
 
     @GetMapping(value = "/cards/addCard")
     public String createCardForm(UserCards userCards, Model model) {
@@ -118,7 +118,18 @@ public class CardController {
         return "redirect:/cards";
     }
 
+    @GetMapping("/card/replenishment/{id}")                        //изменение одного филда для id с редактирование на странице
+    public String addMoneyForm(@PathVariable Integer id, Model model) {
+        model.addAttribute("userCards", cardService.getCard(id));
+        return "replenishment";
+    }
 
+    @PostMapping("/card/replenishment/{id}")
+    public String addMoney(@PathVariable Integer id,
+                           @RequestParam(value="balance") Double balance) {
+        cardService.updateBalancePlus(balance, id);
+        return "redirect:/cards";
+    }
 
 
 

@@ -71,7 +71,7 @@
     <a>    </a>
     <a  class="btn btn-info"  >Unlock card </a>
     <a>    </a>
-    <a  class="btn btn-success" > Replenishment  </a>
+    <a class="btn btn-success" th:href="@{/card/replenishment/{id}(id=${userCards.id})}"  sec:authorize="hasRole('ROLE_ADMIN')" > Replenishment  </a>
     <a>    </a>
     <a  class="btn btn-danger" th:href="@{/card/delete/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" >Delete card </a>
     <a>   </a>
