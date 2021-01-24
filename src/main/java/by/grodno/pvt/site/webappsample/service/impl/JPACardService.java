@@ -59,4 +59,8 @@ public class JPACardService implements CardService, InitializingBean {
     public void updateBalancePlus(Double balance, Integer id) {
         cardRepo.updateBalancePlus(balance, id);
     }
+    @Override
+    public void updateStatusCard(boolean lock, Integer id) {
+        cardRepo.updateStatusCard(lock, id);
+    }
 }

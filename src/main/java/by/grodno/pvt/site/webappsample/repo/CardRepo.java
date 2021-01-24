@@ -15,4 +15,8 @@ public interface CardRepo extends JpaRepository<UserCards, Integer> {
     @Query("UPDATE UserCards c SET c.balance = :balance + balance WHERE c.id = :id")
     void updateBalancePlus(@Param("balance") Double balance, @Param("id") Integer id);
 
+
+    @Modifying
+    @Query("UPDATE UserCards c SET c.lock = :lock WHERE c.id = :id")
+    void updateStatusCard(@Param("lock") Boolean lock, @Param("id") Integer id);
 }

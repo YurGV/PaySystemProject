@@ -67,9 +67,9 @@
 <tr>
     <a  class="btn btn-primary" > Edit One  </a>
     <a>    </a>
-    <a class="btn btn-warning"  >Lock card </a>
+    <a th:href="@{/card/lock/{id}(id=${userCards.id})}" class="btn btn-warning"  >Lock card </a>
     <a>    </a>
-    <a  class="btn btn-info"  >Unlock card </a>
+    <a th:href="@{/card/unlock/{id}(id=${userCards.id})}" class="btn btn-info"  >Unlock card </a>
     <a>    </a>
     <a class="btn btn-success" th:href="@{/card/replenishment/{id}(id=${userCards.id})}"  sec:authorize="hasRole('ROLE_ADMIN')" > Replenishment  </a>
     <a>    </a>

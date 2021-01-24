@@ -20,4 +20,6 @@ public interface CardService {
     void edit(CardDTO cardDTO);
 
     void updateBalancePlus(Double balance, Integer id);
+
+    void updateStatusCard(boolean lock, Integer id);
 }

@@ -131,6 +131,17 @@ public class CardController {
         return "redirect:/cards";
     }
 
+    @GetMapping("/card/lock/{id}")                        //изменение на статус Lock
+    public String editStatusLock(@PathVariable Integer id) {
+        cardService.updateStatusCard(false, id);
+        return "redirect:/cards";
+    }
+
+    @GetMapping("/card/unlock/{id}")                        //изменение на статус UnLock
+    public String editStatusUnlock(@PathVariable Integer id) {
+        cardService.updateStatusCard(true, id);
+        return "redirect:/cards";
+    }
 
 
 
