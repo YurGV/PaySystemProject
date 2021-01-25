@@ -26,6 +26,9 @@ public class Transactions {
 
 	private String procedure;
 
+	@ManyToOne
+	@JoinColumn(name = "userCards_id")
+	private UserCards userCards;
 
 
 }

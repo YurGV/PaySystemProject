@@ -51,9 +51,9 @@ public class JPACardService implements CardService, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        cardRepo.save(new UserCards(null, "Visa", 220.0, 2025,true));
-        cardRepo.save(new UserCards(null, "Maestro", 999.1, 2030,true));
-        cardRepo.save(new UserCards(null, "BelCard", 10.5, 2022,false));
+        cardRepo.save(new UserCards(null, "Visa", 220.0, 2025,true,null));
+        cardRepo.save(new UserCards(null, "Maestro", 999.1, 2030,true,null));
+        cardRepo.save(new UserCards(null, "BelCard", 10.5, 2022,false,null));
     }
 
     @Override

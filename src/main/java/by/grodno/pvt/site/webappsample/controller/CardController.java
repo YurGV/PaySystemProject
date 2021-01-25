@@ -32,6 +32,7 @@ public class CardController {
     @Autowired
     private TransactionsService transService;
 
+
     @GetMapping("/cards")
     public String getAllCards(Model model) {
 
@@ -67,6 +68,7 @@ public class CardController {
         card.setBalance(balance);
         card.setValid(valid);
         card.setLock(lock);
+
 
         cardService.editCard(card);
         return "redirect:/cards";
