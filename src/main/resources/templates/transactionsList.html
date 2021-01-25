@@ -16,16 +16,20 @@
 	<div class="container" style="background-color: grey;">
 		<div class="row">
 			<div class="border col-lg-1">Id</div>
-			<div class="border col-lg-2">Date</div>
+			<div class="border col-lg-3">Transaction Date</div>
 			<div class="border col-lg-2" >Value</div>
 			<div class="border col-lg-2" >Procedure</div>
+			<div class="border col-lg-2" >Cards Name</div>
+
+
 		</div>
 
 		<div class="row" th:each="transactions : ${trans}" align=center>
 			<div class="border col-lg-1" th:text="${transactions.id}"></div>
-			<div class="border col-lg-2" th:text="*{#dates.format(transactions.transactionDate, 'dd-MM-yyyy')}" ></div>
+			<div class="border col-lg-3" th:text="${transactions.transactionDate}"></div>
 			<div class="border col-lg-2" th:text="${transactions.value}"></div>
 			<div class="border col-lg-2" th:text="${transactions.procedure}"></div>
+			<div class="border col-lg-2" th:text="Card name here"></div>
 		</div>
 
 	</div>

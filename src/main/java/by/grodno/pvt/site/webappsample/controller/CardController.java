@@ -141,6 +141,7 @@ public class CardController {
         trans.setProcedure("receive");
         trans.setTransactionDate(new Date());
         trans.setValue(balance);
+        trans.setUserCards(cardService.getCardName(id));
         transService.saveTrans(trans);
         return "redirect:/cards";
     }

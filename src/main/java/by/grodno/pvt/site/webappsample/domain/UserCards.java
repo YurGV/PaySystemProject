@@ -30,11 +30,4 @@ public class UserCards {
 	@OneToMany(mappedBy = "userCards")
 	private List<Transactions> transactions;
 
-//	public UserCards(Integer id, String cardName, double balance, int valid, boolean lock, Transactions transactions) {
-//	}
-
-//	@ManyToOne
-//	@JoinColumn(name = "user_id")
-//	private User ownerUser;
-
 }
