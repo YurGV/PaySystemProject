@@ -47,5 +47,10 @@ public class DeathController {
 	public String getContactPage() {
 		return "ContactUs";
 	}
+
+	@GetMapping("/login1")
+	public String getLoginPage() {
+		return "login1";
+	}
 }
 
