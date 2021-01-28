@@ -49,7 +49,7 @@ body {
 /* Left column */
 .leftcolumn {
   float: left;
-  width: 50%;
+  width: 15%;
 }
 
 /* Right column */
@@ -215,6 +215,16 @@ body {
 #calendar3 tbody td.today {
   outline: 3px solid red;
 }
+body {
+    background: #555;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 10px;
+}
 
 </style>
 </head>
@@ -238,34 +248,23 @@ body {
 <div id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="overlay-content">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="/contact">Contact</a>
+        <a href="/cards">Card Service</a>
+        <a href="/transactions">Transaction History</a>
+        <a href="/users/edit/{id}">Edit Profile</a>
+
     </div>
+    <div sec:authorize="isAuthenticated()">
+        <form class="form-inline my-2 my-lg-0"
+              th:action="@{/logout}" method="post">
+            <input class ="btn btn-outline-success" type="submit" value="Sign Out" />
+        </form>
+    </div>
+
 </div>
 
-<h2>Menu</h2>
-<p>Click on the element below to open the fullscreen overlay navigation menu.</p>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Open</span>
 
-<script>
-function openNav() {
-  document.getElementById("myNav").style.width = "100%";
-}
-
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
-}
-</script>
 
 <div class="row">
-    <div class="leftcolumn">
-        <div class="card">
-            <h2>Welcom to Pay System Mr(s).Brad ! </h2>
-        </div>
-    </div>
-    </div>
     <div class="rightcolumn" style="width: 20rem;">
         <div class="card" style="width: 18rem;">
             <h2>Your profile</h2>
@@ -274,18 +273,12 @@ function closeNav() {
             <p> <span sec:authentication="principal.username">Anonymous</span></p>
         </div>
         <div class="card" style="width: 18rem;">
-            <h3>Popular Post</h3>
-            <p><button type="button" class="btn btn-secondary">Service</button></p>
-            <p><button type="button" class="btn btn-secondary">Transaction history</button></p>
-            <p><button type="button" class="btn btn-secondary">Edit profile</button></p>home.html
             <div sec:authorize="isAuthenticated()">
                 <form class="form-inline my-2 my-lg-0"
                       th:action="@{/logout}" method="post">
                     <input class ="btn btn-outline-success" type="submit" value="Sign Out" />
-
                 </form>
             </div>
-
         </div>
         <div class="card" style="width: 18rem;">
             <table id="calendar3">
@@ -364,7 +357,50 @@ function closeNav() {
             </script>
         </div>
     </div>
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Menu</h2>
+            <p>Click on the element below to open the fullscreen overlay navigation menu.</p>
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Open</span>
 
+            <script>
+    function openNav() {
+      document.getElementById("myNav").style.width = "100%";
+    }
+
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+    </script>
+        </div>
+    </div>
+</div>
+<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="border col-lg-1">Id</div>
+        <div class="border col-lg-2">
+            <a class="p-2" th:href="@{'/users'+'?fieldName=cardName'}" >Card name</a>
+        </div>
+        <div class="border col-lg-2" >Balance</div>
+        <div class="border col-lg-2" >Valid</div>
+        <div class="border col-lg-2" >Lock status</div>
+        <div class="border col-lg-3" >Select</div>
+    </div>
+
+    <div class="row" th:each="userCards : ${cards}" align=center>
+        <div class="border col-lg-1" th:text="${userCards.id}"></div>
+        <div class="border col-lg-2" th:text="${userCards.cardName}"></div>
+        <div class="border col-lg-2" th:text="${userCards.balance}"></div>
+        <div class="border col-lg-2" th:text="${userCards.valid}"></div>
+        <div class="border col-lg-2" th:text="${userCards.lock}"></div>
+        <div class="border col-lg-3">
+            <a class="btn btn-link"
+               th:href="@{/card/{id}(id=${userCards.id})}">Choose</a>
+        </div>
+    </div>
+    <br />
+    <a  class="btn btn-danger" th:href="@{/cards/addCard}" sec:authorize="hasRole('ROLE_ADMIN')" >Add new card </a>
+    <br />
 </div>
 
 </body>
