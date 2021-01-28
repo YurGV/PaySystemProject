@@ -38,9 +38,9 @@ public class DeathController {
 		return "index2";
 	}
 
-	@GetMapping("/e")
+	@GetMapping("/home")
 	public String getIndexPage3() {
-		return "index3";
+		return "home";
 	}
 
 	@GetMapping("/contact")

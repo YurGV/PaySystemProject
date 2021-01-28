@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 10px;
+  text-align: center;
+  background: ;
+}
+
+.header h1 {
+  font-size: 50px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 15%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: right;
+  width: 25%;
+  background-color: #f1f1f1;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: auto;
+  padding: 100px;
+  background:url(img/img_avatar.png);
+  background-size: contain;
+}
+
+/* atm image */
+.atm {
+  background-color: #aaa;
+  width: auto;
+  padding: 20px;
+  background:url(img/bank_atm.svg);
+  background-size: contain;
+}
+/* balance image */
+.balance {
+  background-color: #aaa;
+  width: auto;
+  padding: 20px;
+  background:url(img/show_balance.svg);
+  background-size: contain;
+}
+/* deposit image */
+.deposit {
+  background-color: #aaa;
+  width: auto;
+  padding: 20px;
+  background:url(img/deposit_money.svg);
+
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+.wrapper {overflow: auto;}
+
+#main {margin-left: 4px;}
+
+#leftsidebar {
+  float: none;
+  width: auto;
+}
+
+#menulist {
+  margin: 0;
+  padding: 0;
+}
+
+.menuitem {
+  background: #CDF0F6;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  list-style-type: none;
+  margin: 4px;
+  padding: 2px;
+}
+
+@media screen and (min-width: 480px) {
+  #leftsidebar {width: 200px; float: left;}
+  #main {margin-left: 216px;}
+}
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+#calendar3 {
+  width: 100%;
+  font: monospace;
+  line-height: 1.2em;
+  font-size: 15px;
+  text-align: center;
+}
+#calendar3 thead tr:last-child {
+  font-size: small;
+  color: rgb(85, 85, 85);
+}
+#calendar3 tbody td {
+  color: rgb(44, 86, 122);
+}
+#calendar3 tbody td:nth-child(n+6), #calendar3 .holiday {
+  color: rgb(231, 140, 92);
+}
+#calendar3 tbody td.today {
+  outline: 3px solid red;
+}
+body {
+    background: #555;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 10px;
+}
+
+</style>
+</head>
+<body style="background-image: url('/img/2666325.jpg'); background-size: auto;" >
+
+<div class="header">
+    <h1>Online Card Pay System</h1>
+</div>
+
+<div class="topnav">
+    <a href="/home" >Home</a>
+    <a href="/users">Users</a>
+    <a href="/cards">Cards</a>
+    <a href="/transactions">Transactions History</a>
+    <a href="https://www.worldbank.org/en/news/all">News</a>
+    <a href="/contact">Contact Us</a>
+
+
+</div>
+
+<div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+        <a href="/cards">Card Service</a>
+        <a href="/transactions">Transaction History</a>
+        <a href="/users/edit/{id}">Edit Profile</a>
+
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <form class="form-inline my-2 my-lg-0"
+              th:action="@{/logout}" method="post">
+            <input class ="btn btn-outline-success" type="submit" value="Sign Out" />
+        </form>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+        <div class="rightcolumn" style="width: 20rem;">
+        <div class="card" style="width: 18rem;">
+            <h2>Your profile</h2>
+            <div class="fakeimg"  style="width:50%"> </div>
+
+            <p> <span sec:authentication="principal.username">Anonymous</span></p>
+        </div>
+            <div class="card" style="width: 18rem;">
+                <div sec:authorize="isAuthenticated()">
+                    <form class="form-inline my-2 my-lg-0"
+                          th:action="@{/logout}" method="post">
+                        <input class ="btn btn-outline-success" type="submit" value="Sign Out" />
+                    </form>
+                </div>
+            </div>
+        <div class="card" style="width: 18rem;">
+            <table id="calendar3">
+                <thead>
+                <tr><td colspan="4"><select>
+                    <option value="0">Январь</option>
+                    <option value="1">Февраль</option>
+                    <option value="2">Март</option>
+                    <option value="3">Апрель</option>
+                    <option value="4">Май</option>
+                    <option value="5">Июнь</option>
+                    <option value="6">Июль</option>
+                    <option value="7">Август</option>
+                    <option value="8">Сентябрь</option>
+                    <option value="9">Октябрь</option>
+                    <option value="10">Ноябрь</option>
+                    <option value="11">Декабрь</option>
+                </select><td colspan="3"><input type="number" value="" min="0" max="9999" size="4">
+                <tr><td>Пн<td>Вт<td>Ср<td>Чт<td>Пт<td>Сб<td>Вс
+                <tbody>
+            </table>
+            <script>
+            function Calendar3(id, year, month) {
+            var Dlast = new Date(year,month+1,0).getDate(),
+                D = new Date(year,month,Dlast),
+                DNlast = D.getDay(),
+                DNfirst = new Date(D.getFullYear(),D.getMonth(),1).getDay(),
+                calendar = '<tr>',
+                m = document.querySelector('#'+id+' option[value="' + D.getMonth() + '"]'),
+                g = document.querySelector('#'+id+' input');
+            if (DNfirst != 0) {
+              for(var  i = 1; i < DNfirst; i++) calendar += '<td>';
+            }else{
+              for(var  i = 0; i < 6; i++) calendar += '<td>';
+            }
+            for(var  i = 1; i <= Dlast; i++) {
+              if (i == new Date().getDate() && D.getFullYear() == new Date().getFullYear() && D.getMonth() == new Date().getMonth()) {
+                calendar += '<td class="today">' + i;
+              }else{
+                if (  // список официальных праздников
+                    (i == 1 && D.getMonth() == 0 && ((D.getFullYear() > 1897 && D.getFullYear() < 1930) || D.getFullYear() > 1947)) || // Новый год
+                    (i == 2 && D.getMonth() == 0 && D.getFullYear() > 1992) || // Новый год
+                    ((i == 3 || i == 4 || i == 5 || i == 6 || i == 8) && D.getMonth() == 0 && D.getFullYear() > 2004) || // Новый год
+                    (i == 7 && D.getMonth() == 0 && D.getFullYear() > 1990) || // Рождество Христово
+                    (i == 23 && D.getMonth() == 1 && D.getFullYear() > 2001) || // День защитника Отечества
+                    (i == 8 && D.getMonth() == 2 && D.getFullYear() > 1965) || // Международный женский день
+                    (i == 1 && D.getMonth() == 4 && D.getFullYear() > 1917) || // Праздник Весны и Труда
+                    (i == 9 && D.getMonth() == 4 && D.getFullYear() > 1964) || // День Победы
+                    (i == 12 && D.getMonth() == 5 && D.getFullYear() > 1990) || // День России (декларации о государственном суверенитете Российской Федерации ознаменовала окончательный Распад СССР)
+                    (i == 7 && D.getMonth() == 10 && (D.getFullYear() > 1926 && D.getFullYear() < 2005)) || // Октябрьская революция 1917 года
+                    (i == 8 && D.getMonth() == 10 && (D.getFullYear() > 1926 && D.getFullYear() < 1992)) || // Октябрьская революция 1917 года
+                    (i == 4 && D.getMonth() == 10 && D.getFullYear() > 2004) // День народного единства, который заменил Октябрьскую революцию 1917 года
+                   ) {
+                  calendar += '<td class="holiday">' + i;
+                }else{
+                  calendar += '<td>' + i;
+                }
+              }
+              if (new Date(D.getFullYear(),D.getMonth(),i).getDay() == 0) {
+                calendar += '<tr>';
+              }
+            }
+            for(var  i = DNlast; i < 7; i++) calendar += '<td>&nbsp;';
+            document.querySelector('#'+id+' tbody').innerHTML = calendar;
+            g.value = D.getFullYear();
+            m.selected = true;
+            if (document.querySelectorAll('#'+id+' tbody tr').length < 6) {
+                document.querySelector('#'+id+' tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
+            }
+            document.querySelector('#'+id+' option[value="' + new Date().getMonth() + '"]').style.color = 'rgb(220, 0, 0)'; // в выпадающем списке выделен текущий месяц
+            }
+            Calendar3("calendar3",new Date().getFullYear(),new Date().getMonth());
+            document.querySelector('#calendar3').onchange = function Kalendar3() {
+              Calendar3("calendar3",document.querySelector('#calendar3 input').value,parseFloat(document.querySelector('#calendar3 select').options[document.querySelector('#calendar3 select').selectedIndex].value));
+            }
+            </script>
+        </div>
+    </div>
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Menu</h2>
+            <p>Click on the element below to open the fullscreen overlay navigation menu.</p>
+            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Open</span>
+
+            <script>
+    function openNav() {
+      document.getElementById("myNav").style.width = "100%";
+    }
+
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+    </script>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

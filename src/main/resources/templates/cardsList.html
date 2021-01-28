@@ -10,14 +10,13 @@
 
 <body style="background-image: url('/img/back.jpg');">
 
-	<th:block th:insert="fragments/navBar.html :: navBar" />
+
 
 	<br />
 	<br />
 
-	<div class="container" style="background-color: grey;">
+	<div class="container" style="background-color: white;">
 		<div class="row">
-
 			<div class="border col-lg-1">Id</div>
 			<div class="border col-lg-2">
 				<a class="p-2" th:href="@{'/users'+'?fieldName=cardName'}" >Card name</a>
@@ -26,10 +25,7 @@
 			<div class="border col-lg-2" >Valid</div>
 			<div class="border col-lg-2" >Lock status</div>
 			<div class="border col-lg-3" >Select</div>
-
-
 		</div>
-
 
 		<div class="row" th:each="userCards : ${cards}" align=center>
 			<div class="border col-lg-1" th:text="${userCards.id}"></div>
@@ -37,18 +33,18 @@
 			<div class="border col-lg-2" th:text="${userCards.balance}"></div>
 			<div class="border col-lg-2" th:text="${userCards.valid}"></div>
 			<div class="border col-lg-2" th:text="${userCards.lock}"></div>
-
 			<div class="border col-lg-3">
 				<a class="btn btn-link"
 				   th:href="@{/card/{id}(id=${userCards.id})}">Choose</a>
 			</div>
-
-
 		</div>
 	<br />
 		<a  class="btn btn-danger" th:href="@{/cards/addCard}" sec:authorize="hasRole('ROLE_ADMIN')" >Add new card </a>
 	<br />
 	</div>
+
+
+
 
 	</body>
 </html>

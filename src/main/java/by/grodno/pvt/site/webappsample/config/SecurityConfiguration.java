@@ -18,13 +18,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()
-			.antMatchers("/", "/home", "/register", "/register/**", "/activate/**", "/img/**","/webjars/**").permitAll()
+			.antMatchers("/",  "/register", "/register/**", "/activate/**", "/img/**","/webjars/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
 			.loginPage("/login")
 			.permitAll()
-			.defaultSuccessUrl("/users")
+			.defaultSuccessUrl("/home")
 			.and()
 		.logout()
 			.permitAll();

@@ -225,13 +225,16 @@ body {
 </div>
 
 <div class="topnav">
-    <a href="/homepage" >Home</a>
+    <a href="/home" >Home</a>
     <a href="/users">Users</a>
     <a href="/cards">Cards</a>
     <a href="/transactions">Transactions History</a>
     <a href="https://www.worldbank.org/en/news/all">News</a>
     <a href="/contact">Contact Us</a>
+
+
 </div>
+
 <div id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="overlay-content">
@@ -260,28 +263,28 @@ function closeNav() {
     <div class="leftcolumn">
         <div class="card">
             <h2>Welcom to Pay System Mr(s).Brad ! </h2>
-            <h5>Today 2021, 01, 27 </h5>
-<!--             <div class="fakeimg">Image</div>-->
-            <p>You can choose some menu </p>
-            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
         </div>
+    </div>
     </div>
     <div class="rightcolumn" style="width: 20rem;">
         <div class="card" style="width: 18rem;">
             <h2>Your profile</h2>
-            <div class="fakeimg"  style="width:50%"></div>
+            <div class="fakeimg"  style="width:50%"> </div>
 
-            <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+            <p> <span sec:authentication="principal.username">Anonymous</span></p>
         </div>
         <div class="card" style="width: 18rem;">
             <h3>Popular Post</h3>
-<!--            <div class="atm"><p>Image</p></div>-->
-<!--            <div class="deposit"><p>Image</p></div>-->
-<!--            <div class="balance"><p>Image</p></div>-->
-            <button type="button" class="btn btn-secondary">Choose card</button>
-            <button type="button" class="btn btn-secondary">Transaction history</button>
-            <button type="button" class="btn btn-secondary">Secondary</button>
-            <button type="button" class="btn btn-secondary">Secondary</button>
+            <p><button type="button" class="btn btn-secondary">Service</button></p>
+            <p><button type="button" class="btn btn-secondary">Transaction history</button></p>
+            <p><button type="button" class="btn btn-secondary">Edit profile</button></p>home.html
+            <div sec:authorize="isAuthenticated()">
+                <form class="form-inline my-2 my-lg-0"
+                      th:action="@{/logout}" method="post">
+                    <input class ="btn btn-outline-success" type="submit" value="Sign Out" />
+
+                </form>
+            </div>
 
         </div>
         <div class="card" style="width: 18rem;">
