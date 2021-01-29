@@ -1,24 +1,20 @@
 package by.grodno.pvt.site.webappsample.controller;
 
 import by.grodno.pvt.site.webappsample.domain.Transactions;
-import by.grodno.pvt.site.webappsample.domain.User;
 import by.grodno.pvt.site.webappsample.domain.UserCards;
 import by.grodno.pvt.site.webappsample.dto.CardDTO;
 import by.grodno.pvt.site.webappsample.dto.TransactionsDTO;
-import by.grodno.pvt.site.webappsample.dto.UserDTO;
 import by.grodno.pvt.site.webappsample.service.CardService;
-
 import by.grodno.pvt.site.webappsample.service.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -141,13 +137,13 @@ public class CardController {
     }
 
     @GetMapping("/card/transfer/{id}")                        //изменение одного филда для id с редактирование на странице
-    public String transferMoneyForm(@PathVariable Integer id, Model model) {
+    public String transforMoneyForm(@PathVariable Integer id, Model model) {
         model.addAttribute("userCards", cardService.getCard(id));
         return "transfer";
     }
     @Transactional
     @PostMapping("/card/transfer/{id}")
-    public String transferMoney(@PathVariable Integer id,
+    public String transforMoney(@PathVariable Integer id,
                            @RequestParam(value="balance") Double balance) {
 
         Transactions trans = new Transactions();

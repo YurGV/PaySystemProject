@@ -9,11 +9,12 @@
 
 <th:block th:insert="fragments/header.html :: css" />
 
-<body>
+<body style="background-image: url('/img/Greys.jpg'); background-size: cover;" >
+
 
 <th:block th:insert="fragments/navBar.html :: navBar" />
 
-<div class="row justify-content-center  p-2	">Enter user details please...</div>
+<div class="row justify-content-center  p-2	">Please select an operation ...</div>
 
 <form th:action="@{/card/{id}(id=${userCards.id})}" method="post" th:object="${userCards}">
 
@@ -63,9 +64,9 @@
     </div>
 
 </form>
-
+<center>
 <tr>
-    <a  th:href="@{/card/transfer/{id}(id=${userCards.id})}"class="btn btn-primary" > Transfer money  </a>
+    <a  th:href="@{/card/transfer/{id}(id=${userCards.id})}"class="btn btn-primary" sec:authorize="hasRole('ROLE_USER')"> Transfer money  </a>
     <a>    </a>
     <a th:href="@{/card/lock/{id}(id=${userCards.id})}" class="btn btn-warning"  >Lock card </a>
     <a>    </a>
@@ -78,6 +79,7 @@
     <a  class="btn btn-secondary" th:href="@{/card/edit/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" >Edit card </a>
 
 </tr>
+</center>
 </body>
 </html>
 

@@ -61,7 +61,6 @@ public class UsersController {
 		model.addAttribute("users", users);
 		model.addAttribute("currentPage", pageNum);
 		model.addAttribute("totalPages", usersPage.getTotalPages());
-
 		model.addAttribute("fieldName", sortField);
 		model.addAttribute("sort", sortDirection);
 
@@ -145,11 +144,6 @@ public class UsersController {
 	@GetMapping("/contact")
 	public String getContactPage() {
 		return "ContactUs";
-	}
-
-	@GetMapping("/login1")
-	public String getLoginPage() {
-		return "login1";
 	}
 
 
