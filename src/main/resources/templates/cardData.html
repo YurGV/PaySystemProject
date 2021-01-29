@@ -69,18 +69,15 @@
     <a>    </a>
     <a th:href="@{/card/lock/{id}(id=${userCards.id})}" class="btn btn-warning"  >Lock card </a>
     <a>    </a>
-    <a th:href="@{/card/unlock/{id}(id=${userCards.id})}" class="btn btn-info"  >Unlock card </a>
+    <a th:href="@{/card/unlock/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-info"  >Unlock card </a>
     <a>    </a>
-    <a class="btn btn-success" th:href="@{/card/replenishment/{id}(id=${userCards.id})}"  sec:authorize="hasRole('ROLE_ADMIN')" > Replenishment  </a>
+    <a class="btn btn-success" th:href="@{/card/replenishment/{id}(id=${userCards.id})}"  sec:authorize="hasRole('ROLE_USER')" > Replenishment  </a>
     <a>    </a>
     <a  class="btn btn-danger" th:href="@{/card/delete/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" >Delete card </a>
     <a>   </a>
     <a  class="btn btn-secondary" th:href="@{/card/edit/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" >Edit card </a>
 
-
-
 </tr>
-
 </body>
 </html>
 

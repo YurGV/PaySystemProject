@@ -20,7 +20,7 @@ public class UserRegistrationDTOToUserConverter implements Converter<UserRegistr
 		user.setFirstName(source.getFirstName());
 		user.setLastName(source.getLastName());
 		user.setEmail(source.getEmail());
-		user.setRole(UserRole.STUDENT);
+		user.setRole(UserRole.USER);
 		UserCredentials creds = new UserCredentials(null,  new Date(), false, source.getPassword());
 
 		user.setCredentials(Collections.singletonList(creds));

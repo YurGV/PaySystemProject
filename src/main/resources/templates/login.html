@@ -162,13 +162,21 @@
 <th:block th:insert="fragments/header.html :: css" />
 
 <body class="align">
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
 
-<th:block th:insert="fragments/navBar.html :: navBar" />
 <div class="container">
 	<div class="row justify-content-center p-2" th:if="${param.error}">Invalid
 		username and password.</div>
 	<div class="row justify-content-center p-2" th:if="${param.logout}">You
 		have been logged out.</div>
+
+	<div class="row justify-content-center  p-2	">Enter your email and password please...</div>
+
 	<form th:action="@{/login}" method="post">
 		<div class="login-wrap">
 			<div class="login-html">

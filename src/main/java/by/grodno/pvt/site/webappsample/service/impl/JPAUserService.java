@@ -99,7 +99,7 @@ public class JPAUserService implements UserService, InitializingBean {
 	}
 
 	private User getUser(String email, String firstName, String lastName) {
-		User oldUser = new User(null, firstName, lastName, email, null, UserRole.ADMIN, null, new Date());
+		User oldUser = new User(null, firstName, lastName, email, null, UserRole.USER, null, new Date());
 		UserCredentials userCredentials = new UserCredentials(null, new Date(), true, "0000");
 		oldUser.setCredentials(Collections.singletonList(userCredentials));
 		return oldUser;

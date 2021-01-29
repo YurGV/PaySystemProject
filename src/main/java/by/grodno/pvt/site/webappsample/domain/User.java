@@ -54,9 +54,4 @@ public class User {
 	private Date birthdate;
 
 
-//
-//	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "ownerUser")
-//	private List<UserCards> userCards;
-
-
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -74,26 +75,6 @@ public class CardController {
         return "redirect:/cards";
     }
 
-//    @PostMapping("/cards/edit/{id}")
-//    public String editCard(@PathVariable Integer id, @Valid CardDTO cardDTO, BindingResult br, Model model) {
-//
-//        if (br.hasErrors()) {
-//            model.addAttribute("cardDTO", cardDTO);
-//            return "cardDataEdit";
-//        }
-//
-//        UserCards userCards = new UserCards();
-//        userCards.setId(id);
-//        userCards.setCardName(cardDTO.getCardName());
-//        userCards.setBalance(cardDTO.getBalance());
-//        userCards.setValid(cardDTO.getValid());
-//        userCards.setLock(cardDTO.getLock());
-//
-//        cardService.edit(cardDTO);
-//
-//        return "redirect:/cards";
-//    }
-
     @GetMapping(value = "/cards/addCard")
     public String createCardForm(UserCards userCards, Model model) {
         userCards = new UserCards();
@@ -132,6 +113,7 @@ public class CardController {
         return "replenishment";
     }
 
+    @Transactional
     @PostMapping("/card/replenishment/{id}")
     public String addMoney(@PathVariable Integer id,
                            @RequestParam(value="balance") Double balance) {
@@ -163,10 +145,18 @@ public class CardController {
         model.addAttribute("userCards", cardService.getCard(id));
         return "transfer";
     }
-
+    @Transactional
     @PostMapping("/card/transfer/{id}")
     public String transferMoney(@PathVariable Integer id,
                            @RequestParam(value="balance") Double balance) {
+
+        Transactions trans = new Transactions();
+        trans.setProcedure("transfer");
+        trans.setTransactionDate(new Date());
+        trans.setValue(balance);
+        trans.setUserCards(cardService.getCardName(id));
+        transService.saveTrans(trans);
+
         cardService.updateBalanceMinus(balance, id);
         return "redirect:/cards";
     }

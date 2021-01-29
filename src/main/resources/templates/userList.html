@@ -13,23 +13,16 @@
 	<th:block th:insert="fragments/navBar.html :: navBar" />
 
 
-	<div class="row justify-content-center p-3">
-		<p>
-			Hello, <span sec:authentication="principal.username">Udefined</span>!
-		</p>
-	</div>
-
 	<div class="container" style="background-color: white;">
 		<div class="row">
 			<div class="border col-lg-1">Image</div>
 			<div class="border col-lg-1">Id</div>
 			<div class="border col-lg-2">
-				<a class="p-2" th:href="@{'/users'+'?fieldName=firstName'}" th:text="#{label.firstname}">Firstname  ORIGINAL</a>
+				<a class="p-2" th:href="@{'/users'+'?fieldName=firstName'}" th:text="#{label.firstname}">Firstname</a>
 			</div>
-			<div class="border col-lg-2" th:text="#{label.lastname}">Lastname  ORIGINAL</div>
-			<div class="border col-lg-1" sec:authorize="hasRole('ROLE_ADMIN')">Edit</div>
-			<div class="border col-lg-1">Buy user</div>
-			<div class="border col-lg-4" sec:authorize="hasRole('ROLE_ADMIN')">Upload
+			<div class="border col-lg-2" th:text="#{label.lastname}">Lastname</div>
+			<div class="border col-lg-1" >Edit</div>
+			<div class="border col-lg-4" >Upload
 				img</div>
 		</div>
 
@@ -46,11 +39,8 @@
 				<a class="btn btn-link"
 					th:href="@{/users/edit/{uid}(uid=${user.id})}">Edit</a>
 			</div>
-			<div class="border col-lg-1">
-				<a class="btn btn-link"
-					th:href="@{/users/buy/{uid}(uid=${user.id})}">Buy</a>
-			</div>
-			<div class="border col-lg-4" sec:authorize="hasRole('ROLE_ADMIN')">
+
+			<div class="border col-lg-4">
 				<form method="POST" enctype="multipart/form-data"
 					th:action="@{/users/{uid}/img(uid=${user.id})}">
 					<!-- <div class="custom-file">    class="custom-file-input" class="custom-file-label"--><div class="custom-file">
@@ -65,23 +55,9 @@
 			</div>
 		</div>
 		
-		
-		
-		<div class="row p-2">
-			Choose page: <span th:each="i: ${#numbers.sequence(1,totalPages)}">
-
-				<a class="p-2" th:if="${currentPage + 1 != i}"
-				th:href="@{'/users'+'?pn='+${i}}">[[${i}]]</a> <span class="p-2 "
-				th:unless="${currentPage + 1 != i}">[[${i}]]</span>
-
-			</span>
-
-		</div>
 	</div>
 	<br />
 	<br />
-
-
 
 	<th:block th:insert="fragments/scripts.html :: js" />
 	<script>

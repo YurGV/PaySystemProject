@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -94,13 +93,9 @@ public class UsersController {
 		UserNotFoundException userNotFoundException = new UserNotFoundException();
 		userNotFoundException.setUserId("someUserId");
 		throw userNotFoundException;
-
-	//	return userService.getUsers().stream().map(u -> convertionService.convert(u, UserDTO.class))
-	//			.collect(Collectors.toList());
 	}
 
 	@GetMapping("/users/edit/{id}")
-	@PreAuthorize("@editUserVouter.checkUserId(authentication,#id)")
 	public String editUserForm(@PathVariable Integer id, Model model) {
 
 		model.addAttribute("user", userService.getUser(id));
@@ -130,6 +125,31 @@ public class UsersController {
 	public String handleUserNotFoundException(UserNotFoundException ex, Model model) {
 		model.addAttribute("userId", ex.getUserId());
 		return "errors/userNotFound";
+	}
+
+	@GetMapping("/w")
+	public String getIndexPage1() {
+		return "index1";
+	}
+
+	@GetMapping("/q")
+	public String getIndexPage2() {
+		return "index2";
+	}
+
+	@GetMapping("/home")
+	public String getIndexPage3() {
+		return "home";
+	}
+
+	@GetMapping("/contact")
+	public String getContactPage() {
+		return "ContactUs";
+	}
+
+	@GetMapping("/login1")
+	public String getLoginPage() {
+		return "login1";
 	}
 
 
