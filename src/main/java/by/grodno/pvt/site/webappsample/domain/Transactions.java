@@ -26,7 +26,7 @@ public class Transactions {
 
 	private String procedure;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "userCards_id")
 	private UserCards userCards;
 

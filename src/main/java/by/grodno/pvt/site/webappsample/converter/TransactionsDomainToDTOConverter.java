@@ -19,6 +19,7 @@ public class TransactionsDomainToDTOConverter implements Converter<Transactions,
         t.setProcedure(source.getProcedure());
         t.setTransactionDate(source.getTransactionDate());
         t.setValue(source.getValue());
+        t.setCardName(source.getUserCards().getCardName());
         return t;
     }
 }

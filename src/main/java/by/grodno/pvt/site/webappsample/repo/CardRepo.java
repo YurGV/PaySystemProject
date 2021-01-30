@@ -24,4 +24,5 @@ public interface CardRepo extends JpaRepository<UserCards, Integer> {
     void updateStatusCard(@Param("lock") Boolean lock, @Param("id") Integer id);
 
 
+
 }

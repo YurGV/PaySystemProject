@@ -52,10 +52,11 @@ public class JPAUserService implements UserService, InitializingBean {
 	public User getUser(Integer id) {
 		return repo.getOne(id);
 	}
+
 	@Override
 	public void saveUser(User user) {
 		repo.save(user);
-		// emailService.sendUserActivationEmail(user);
+		emailService.sendUserActivationEmail(user);
 	}
 	@Override
 	public Optional<User> findByEmail(String email) {
@@ -110,5 +111,7 @@ public class JPAUserService implements UserService, InitializingBean {
 		oldUser.setCredentials(Collections.singletonList(userCredentials));
 		return oldUser;
 	}
+
+
 
 }

@@ -19,4 +19,6 @@ public class TransactionsDTO {
 
     @Length(min = 3, max = 20)
     private String procedure;
+
+    private String cardName;
 }
