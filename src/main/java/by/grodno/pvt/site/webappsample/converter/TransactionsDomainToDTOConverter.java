@@ -20,7 +20,7 @@ public class TransactionsDomainToDTOConverter implements Converter<Transactions,
         t.setTransactionDate(source.getTransactionDate());
         t.setValue(source.getValue());
         t.setCardName(source.getUserCards().getCardName());
-
+        t.setBalance(source.getUserCards().getBalance());   //текущий баланс карты
         return t;
     }
 }

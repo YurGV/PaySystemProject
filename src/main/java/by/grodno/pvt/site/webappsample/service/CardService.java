@@ -11,7 +11,9 @@ public interface CardService {
 
     UserCards getCard(Integer id);
 
-    UserCards getCardName(Integer id);
+//    UserCards getCardName(Integer id);
+//
+//    UserCards getCardBalance(Integer id);
 
     void addCard(List<UserCards> cards);
 

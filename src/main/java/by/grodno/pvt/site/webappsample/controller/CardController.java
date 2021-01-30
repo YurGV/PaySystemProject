@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.zip.DeflaterOutputStream;
 
 @Controller
 public class CardController {
@@ -126,9 +127,9 @@ public class CardController {
         trans.setProcedure("receive");
         trans.setTransactionDate(new Date());
         trans.setValue(balance);
-        trans.setUserCards(cardService.getCardName(id));
+        trans.setUserCards(cardService.getCard(id));
         transService.saveTrans(trans);
-        emailService.sendTransactionEmail(userService.getUser(4));
+        emailService.sendTransactionEmail(userService.getUser(4)); //id надо сделать динамической!!!!!!!!
         return "redirect:/cards";
     }
 
@@ -145,23 +146,24 @@ public class CardController {
     }
 
     @GetMapping("/card/transfer/{id}")                        //изменение одного филда для id с редактирование на странице
-    public String transforMoneyForm(@PathVariable Integer id, Model model) {
+    public String transferMoneyForm(@PathVariable Integer id, Model model) {
         model.addAttribute("userCards", cardService.getCard(id));
         return "transfer";
     }
     @Transactional
     @PostMapping("/card/transfer/{id}")
-    public String transforMoney(@PathVariable Integer id,
+    public String transferMoney(@PathVariable Integer id,
                            @RequestParam(value="balance") Double balance) {
 
-
         Transactions trans = new Transactions();
-        if (balance > trans.getUserCards(cardService.getCardName(id)))
-
         trans.setProcedure("transfer");
         trans.setTransactionDate(new Date());
+        trans.setUserCards(cardService.getCard(id));                //сначала получаем карту, а затем вытаскиваем из неё данные
+        if (balance > trans.getUserCards().getBalance()) {
+            System.out.println("STOP");
+            return "redirect:/card/transfer/{id}";                  //надо добавить Exepsion
+        }
         trans.setValue(balance);
-        trans.setUserCards(cardService.getCardName(id));
         transService.saveTrans(trans);
 
         cardService.updateBalanceMinus(balance, id);

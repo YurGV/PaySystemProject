@@ -28,10 +28,15 @@ public class JPACardService implements CardService, InitializingBean {
         return cardRepo.getOne(id);
     }
 
-    @Override
-    public UserCards getCardName(Integer id) {
-        return cardRepo.getOne(id);
-    }
+//    @Override                                            /одно и тоже что getCard()
+//    public UserCards getCardName(Integer id) {
+//        return cardRepo.getOne(id);
+//    }
+//
+//    @Override
+//    public UserCards getCardBalance(Integer id) {
+//    return cardRepo.getOne(id);
+//    }
 
     @Override
     public void addCard(List<UserCards> cards) {

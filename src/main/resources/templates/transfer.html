@@ -20,21 +20,33 @@
 
     <div class="row justify-content-center  p-1">
         <div class="col-sm  p-1 justify-content-end"
-             style="text-align: right">Balance :</div>
+             style="text-align: right"> Card Balance :</div>
         <div class="col-sm  p-1">
-            <input type="text" th:field="*{balance}" />
+            <input type="text" th:text="balance" th:field="*{balance}" />
         </div>
     </div>
 
     <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Transfer to :</div>
+        <div class="col-sm  p-1">
+            <input type="text" th:text=" number" />
+        </div>
+    </div>
+
+    <div class="row justify-content-center  p-1">
+        <div class="col-sm  p-1 justify-content-end"
+             style="text-align: right">Value :</div>
+        <div class="col-sm  p-1">
+            <input type="text" th:field="*{balance}" />
+        </div>
+    </div>
+    <div class="row justify-content-center alert alert-danger" role="alert" th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}">Name Error</div>
+
+    <div class="row justify-content-center  p-1">
         <input class="btn btn-primary" type="submit" value="Save" />
     </div>
+
 </form>
-
-<tr>
-
-
-</tr>
-
 </body>
 </html>

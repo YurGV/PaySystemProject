@@ -30,4 +30,6 @@ public class UserCards {
 	@OneToMany(mappedBy = "userCards")
 	private List<Transactions> transactions;
 
+	public UserCards(UserCards cardBalance) {
+	}
 }
