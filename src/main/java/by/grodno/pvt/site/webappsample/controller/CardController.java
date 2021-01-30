@@ -1,11 +1,14 @@
 package by.grodno.pvt.site.webappsample.controller;
 
 import by.grodno.pvt.site.webappsample.domain.Transactions;
+import by.grodno.pvt.site.webappsample.domain.User;
 import by.grodno.pvt.site.webappsample.domain.UserCards;
 import by.grodno.pvt.site.webappsample.dto.CardDTO;
 import by.grodno.pvt.site.webappsample.dto.TransactionsDTO;
 import by.grodno.pvt.site.webappsample.service.CardService;
+import by.grodno.pvt.site.webappsample.service.EmailService;
 import by.grodno.pvt.site.webappsample.service.TransactionsService;
+import by.grodno.pvt.site.webappsample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,10 @@ public class CardController {
     private CardService cardService;
     @Autowired
     private TransactionsService transService;
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping("/cards")
@@ -121,6 +128,7 @@ public class CardController {
         trans.setValue(balance);
         trans.setUserCards(cardService.getCardName(id));
         transService.saveTrans(trans);
+        emailService.sendTransactionEmail(userService.getUser(4));
         return "redirect:/cards";
     }
 
@@ -146,7 +154,10 @@ public class CardController {
     public String transforMoney(@PathVariable Integer id,
                            @RequestParam(value="balance") Double balance) {
 
+
         Transactions trans = new Transactions();
+        if (balance > trans.getUserCards(cardService.getCardName(id)))
+
         trans.setProcedure("transfer");
         trans.setTransactionDate(new Date());
         trans.setValue(balance);

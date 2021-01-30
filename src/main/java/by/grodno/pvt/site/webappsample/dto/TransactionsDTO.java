@@ -14,11 +14,12 @@ public class TransactionsDTO {
 
     private Date transactionDate;
 
-
     private double value;
 
     @Length(min = 3, max = 20)
     private String procedure;
 
     private String cardName;
+
+    private double balance;
 }

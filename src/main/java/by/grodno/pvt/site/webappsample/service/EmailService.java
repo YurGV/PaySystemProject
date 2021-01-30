@@ -6,4 +6,6 @@ public interface EmailService {
 
 	void sendUserActivationEmail(User user);
 
+	void sendTransactionEmail(User user);
+
 }

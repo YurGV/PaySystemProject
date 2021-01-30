@@ -57,6 +57,7 @@ public class JPAUserService implements UserService, InitializingBean {
 	public void saveUser(User user) {
 		repo.save(user);
 		emailService.sendUserActivationEmail(user);
+
 	}
 	@Override
 	public Optional<User> findByEmail(String email) {
@@ -94,8 +95,8 @@ public class JPAUserService implements UserService, InitializingBean {
 	}
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		repo.save(getUser("max@max.max", "Brad", "Ivanov"));
-		repo.save(getUser("max1@max.max", "Antonio", "Sidorov"));
+		repo.save(getUser("tarenx@mail.ru", "Brad", "Ivanov"));
+		repo.save(getUser("golovach.yura.jt@gmail.com", "Antonio", "Sidorov"));
 		repo.save(getUser1("admin@admin.com", "Admin", "Adminovich"));
 	}
 
