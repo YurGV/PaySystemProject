@@ -50,7 +50,10 @@ public class CardController {
     @GetMapping("/card/{id}")
     public String ViewCardForm(@PathVariable Integer id, Model model) {
         model.addAttribute("userCards", cardService.getCard(id));
-        return "cardData";
+        if (!cardService.getCard(id).getLock())
+            return "cardsList";
+        else
+            return "cardData";
     }
 
     @GetMapping("/card/edit/{id}")
