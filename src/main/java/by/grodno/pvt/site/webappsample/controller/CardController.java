@@ -93,8 +93,7 @@ public class CardController {
     @PostMapping(value = "/cards/addCard")
 	public String createCard(@RequestParam(value="cardName") String cardName,
 							 @RequestParam(value="balance") Double balance,
-							 @RequestParam(value="valid") Integer valid,
-                             @RequestParam(value="lock") Boolean lock)
+							 @RequestParam(value="valid") Integer valid)
 							  {
 
 		UserCards card = new UserCards();
@@ -102,7 +101,7 @@ public class CardController {
 		card.setCardName(cardName);
 		card.setBalance(balance);
 		card.setValid(valid);
-		card.setLock(lock);
+		card.setLock(false);
 
 		cardService.saveCard(card);
 		return "redirect:/cards";

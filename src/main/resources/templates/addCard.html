@@ -6,21 +6,15 @@
 </head>
 <body style="background-image: url('/img/Greys.jpg'); background-size: cover;" >
 
-<center>
-    <h1>Add a new Card:</h1>
-
-    <form th:action="@{/cards/addCard}" th:object="${userCards}" method="post">
-
-
-        <p>cardName: <input type="text" th:field="*{cardName}" /></p>
-        <p>balance: <input type="text" th:field="*{balance}" /></p>
-        <p>valid: <input type="text" th:field="*{valid}" /></p>
-        <p>lock: <input type="text" th:field="*{lock}" /></p>
-
-        <p><input type="submit" value="Save" /> <input type="reset" value="Reset" /></p>
-    </form>
-
-</center>
+    <center>
+        <h1>Add a new Card:</h1>
+        <form th:action="@{/cards/addCard}" th:object="${userCards}" method="post">
+            <p>cardName: <input type="text" th:field="*{cardName}" /></p>
+            <p>balance: <input type="text" th:field="*{balance}" /></p>
+            <p>valid: <input type="text" th:field="*{valid}" /></p>
+            <p><input type="submit" value="Save" /> <input type="reset" value="Reset" /></p>
+        </form>
+    </center>
 </body>
 </html>
 
