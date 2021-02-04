@@ -44,8 +44,6 @@
 </div>
 
 
-	<th:block th:insert="fragments/navBar.html :: navBar" />
-
 	<div class="row justify-content-center  p-2	">Enter user details please...</div>
 	
 	<form th:action="@{/users/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
