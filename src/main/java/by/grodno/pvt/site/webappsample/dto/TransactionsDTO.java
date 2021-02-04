@@ -21,5 +21,7 @@ public class TransactionsDTO {
 
     private String cardName;
 
+    private String cardNumber;
+
     private double balance;
 }

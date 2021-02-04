@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.math.BigInteger;
 import java.util.List;
+
+import static java.math.BigInteger.valueOf;
+
 @Service
 @Transactional
 public class JPACardService implements CardService, InitializingBean {
@@ -62,9 +66,9 @@ public class JPACardService implements CardService, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        cardRepo.save(new UserCards(null, "Visa", 220.0, 2025,true,null));
-        cardRepo.save(new UserCards(null, "Maestro", 999.1, 2030,true,null));
-        cardRepo.save(new UserCards(null, "BelCard", 10.5, 2022,false,null));
+        cardRepo.save(new UserCards(null, "Visa", "0123 4564 0044 9874", 220.0, 2025, 123 , true,null));
+        cardRepo.save(new UserCards(null, "Maestro","1111 2222 3333 4444", 999.1, 2030,312 ,true,null));
+        cardRepo.save(new UserCards(null, "BelCard","9999 5555 6666 0123", 10.5, 2022,234,false,null));
     }
 
     @Override

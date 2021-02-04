@@ -1,7 +1,6 @@
 package by.grodno.pvt.site.webappsample.dto;
 
 import javax.validation.constraints.Email;
-
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;

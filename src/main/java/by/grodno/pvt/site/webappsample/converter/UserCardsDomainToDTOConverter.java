@@ -16,8 +16,10 @@ public class UserCardsDomainToDTOConverter implements Converter<UserCards, CardD
 		CardDTO u = new CardDTO();
 		u.setId(source.getId());
 		u.setCardName(source.getCardName());
+		u.setCardNumber(source.getCardNumber());
 		u.setBalance(source.getBalance());
 		u.setValid(source.getValid());
+		u.setCvv(source.getCvv());
 		u.setLock(source.getLock());
 		return u;
 	}

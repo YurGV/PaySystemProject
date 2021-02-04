@@ -1,10 +1,12 @@
 package by.grodno.pvt.site.webappsample.controller;
 
+
 import by.grodno.pvt.site.webappsample.domain.Transactions;
 import by.grodno.pvt.site.webappsample.domain.User;
 import by.grodno.pvt.site.webappsample.domain.UserCards;
 import by.grodno.pvt.site.webappsample.dto.CardDTO;
 import by.grodno.pvt.site.webappsample.dto.TransactionsDTO;
+import by.grodno.pvt.site.webappsample.dto.UserRegistrationDTO;
 import by.grodno.pvt.site.webappsample.service.CardService;
 import by.grodno.pvt.site.webappsample.service.EmailService;
 import by.grodno.pvt.site.webappsample.service.TransactionsService;
@@ -15,13 +17,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.zip.DeflaterOutputStream;
+
 
 @Controller
 public class CardController {
@@ -87,20 +91,22 @@ public class CardController {
         userCards = new UserCards();
         model.addAttribute("UserCards", userCards);
         return "addCard";
-        //cardRepo.save(new UserCards(null, "Visa", 220.0, 2025,true));
     }
 
-    @PostMapping(value = "/cards/addCard")
+    @PostMapping(value = "/cards/addCard/new")
 	public String createCard(@RequestParam(value="cardName") String cardName,
+                             @RequestParam(value="cardNumber") String cardNumber,
 							 @RequestParam(value="balance") Double balance,
-							 @RequestParam(value="valid") Integer valid)
-							  {
+							 @RequestParam(value="valid") Integer valid,
+                             @RequestParam(value="cvv") Integer cvv) {
 
-		UserCards card = new UserCards();
+        UserCards card = new UserCards();
 
 		card.setCardName(cardName);
+        card.setCardNumber(cardNumber);
 		card.setBalance(balance);
 		card.setValid(valid);
+        card.setCvv(cvv);
 		card.setLock(false);
 
 		cardService.saveCard(card);

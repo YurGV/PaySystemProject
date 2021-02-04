@@ -69,31 +69,6 @@ body {
   background-size: contain;
 }
 
-/* atm image */
-.atm {
-  background-color: #aaa;
-  width: auto;
-  padding: 20px;
-  background:url(img/bank_atm.svg);
-  background-size: contain;
-}
-/* balance image */
-.balance {
-  background-color: #aaa;
-  width: auto;
-  padding: 20px;
-  background:url(img/show_balance.svg);
-  background-size: contain;
-}
-/* deposit image */
-.deposit {
-  background-color: #aaa;
-  width: auto;
-  padding: 20px;
-  background:url(img/deposit_money.svg);
-
-}
-
 /* Add a card effect for articles */
 .card {
   background-color: white;
@@ -226,14 +201,10 @@ body {
     padding: 10px;
 }
 
+
 </style>
 </head>
-<body style="background-image: url('/img/2666325.jpg'); background-size: auto;" >
-
-<div class="header">
-    <h1>Online Card Pay System</h1>
-</div>
-
+<body style="background-image: url('/img/back3.jpg'); background-size: cover" >
 <div class="topnav">
     <a href="/home" >Home</a>
     <a href="/users" sec:authorize="hasRole('ROLE_ADMIN')" >Users</a>
@@ -241,8 +212,10 @@ body {
     <a href="/transactions">Transactions History</a>
     <a href="https://www.worldbank.org/en/news/all">News</a>
     <a href="/contact">Contact Us</a>
+</div>
 
-
+<div class="header">
+    <h1>Online Card Pay System</h1>
 </div>
 
 <div id="myNav" class="overlay">
@@ -250,8 +223,7 @@ body {
     <div class="overlay-content">
         <a href="/cards">Card Service</a>
         <a href="/transactions">Transaction History</a>
-        <a href="/users/edit/{id}">Edit Profile</a>
-        <a href="https://www.worldbank.org/en/news/all">News</a>
+        <a href="https://finance.tut.by/">News</a>
         <a href="/contact">Contact Us</a>
     </div>
 </div>
@@ -364,6 +336,49 @@ body {
       document.getElementById("myNav").style.width = "0%";
     }
     </script>
+        </div>
+
+        <div class="card">
+            <div class="b-widget m-white"><div class="b-widget-content kurs-crosskurs tab-content">
+                <ul class="nav nav-linears nav-linears-lite" role="tablist">
+                    <li class="active"><a data-toggle="tab" data-h="best_all">Лучшие курсы валют на сегодня</a></li>
+                </ul>
+                <tfoot><tr><th></th><th align="left">.          продать  .</th><th align="center">.  купить  .</th><th align="right">.  нацбанк  .</th>
+                </tr></tfoot>
+                <div id="tab-best" class="tab-pane active">
+                    <table class="w-currency_table" cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr>
+                        <td align="left"><a data-ua-hash="finance.tut.by_main_right_kurs_best_usd" href="https://finance.tut.by/kurs/grodno/dollar/?sortBy=buy&amp;sortDir=down">1 USD</a></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/dollar/?sortBy=buy&amp;sortDir=down" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_usd"></a><i class="b-icon icon-rate-"></i><p>2.6300</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/dollar/?sortBy=sell&amp;sortDir=up" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_usd"></a><i class="b-icon icon-rate-"></i><p>2.6340</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/arhiv/?currency=USD" class="full-link" title="0.0111" data-ua-hash="finance.tut.by_main_right_kurs_best_usd"></a><i class="b-icon icon-rate-up"></i><p>2.6404</p></div></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><a data-ua-hash="finance.tut.by_main_right_kurs_best_eur" href="https://finance.tut.by/kurs/grodno/euro/?sortBy=buy&amp;sortDir=down">1 EUR</a></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/euro/?sortBy=buy&amp;sortDir=down" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_eur"></a><i class="b-icon icon-rate-"></i><p>3.1550</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/euro/?sortBy=sell&amp;sortDir=up" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_eur"></a><i class="b-icon icon-rate-"></i><p>3.1580</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/arhiv/?currency=EUR" class="full-link" title="0.0002" data-ua-hash="finance.tut.by_main_right_kurs_best_eur"></a><i class="b-icon icon-rate-up"></i><p>3.1764</p></div></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><a data-ua-hash="finance.tut.by_main_right_kurs_best_rub" href="https://finance.tut.by/kurs/grodno/rubl/?sortBy=buy&amp;sortDir=down">100 RUB</a></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/rubl/?sortBy=buy&amp;sortDir=down" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_rub"></a><i class="b-icon icon-rate-"></i><p>3.4720</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/rubl/?sortBy=sell&amp;sortDir=up" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_rub"></a><i class="b-icon icon-rate-"></i><p>3.4880</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/arhiv/?currency=RUB" class="full-link" title="0.0024" data-ua-hash="finance.tut.by_main_right_kurs_best_rub"></a><i class="b-icon icon-rate-up"></i><p>3.4694</p></div></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><a data-ua-hash="finance.tut.by_main_right_kurs_best_uah" href="https://finance.tut.by/kurs/grodno/grivna/?sortBy=buy&amp;sortDir=down">100 UAH</a></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/grivna/?sortBy=buy&amp;sortDir=down" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_uah"></a><i class="b-icon icon-rate-"></i><p>6.7500</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/grivna/?sortBy=sell&amp;sortDir=up" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_uah"></a><i class="b-icon icon-rate-"></i><p>9.2000</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/arhiv/?currency=UAH" class="full-link" title="0.0661" data-ua-hash="finance.tut.by_main_right_kurs_best_uah"></a><i class="b-icon icon-rate-up"></i><p>9.4381</p></div></td>
+                    </tr>
+                    <tr>
+                        <td align="left"><a data-ua-hash="finance.tut.by_main_right_kurs_best_pln" href="https://finance.tut.by/kurs/grodno/zloty/?sortBy=buy&amp;sortDir=down">10 PLN</a></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/zloty/?sortBy=buy&amp;sortDir=down" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_pln"></a><i class="b-icon icon-rate-"></i><p>6.8500</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/kurs/grodno/zloty/?sortBy=sell&amp;sortDir=up" class="full-link" title="0.0000" data-ua-hash="finance.tut.by_main_right_kurs_best_pln"></a><i class="b-icon icon-rate-"></i><p>7.0000</p></div></td>
+                        <td align="right"><div class="b-course"><a href="https://finance.tut.by/arhiv/?currency=PLN" class="full-link" title="0.0417" data-ua-hash="finance.tut.by_main_right_kurs_best_pln"></a><i class="b-icon icon-rate-up"></i><p>7.0698</p></div></td>
+                    </tr>
+                    </tbody>
+                    </table>
+            </div>
         </div>
     </div>
 </div>

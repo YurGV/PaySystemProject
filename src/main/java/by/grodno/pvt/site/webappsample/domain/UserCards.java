@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 import java.util.List;
 
 
@@ -21,8 +22,10 @@ public class UserCards {
 	private Integer id;
 
 	private String cardName;
+	private String cardNumber;
 	private Double balance;
 	private Integer valid;
+	private Integer cvv;
 
 	@Column(name = "isLock")
 	private Boolean lock;
@@ -30,6 +33,4 @@ public class UserCards {
 	@OneToMany(mappedBy = "userCards")
 	private List<Transactions> transactions;
 
-	public UserCards(UserCards cardBalance) {
-	}
 }
