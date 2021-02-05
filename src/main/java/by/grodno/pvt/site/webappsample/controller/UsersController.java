@@ -126,16 +126,6 @@ public class UsersController {
 		return "errors/userNotFound";
 	}
 
-	@GetMapping("/w")
-	public String getIndexPage1() {
-		return "index1";
-	}
-
-	@GetMapping("/q")
-	public String getIndexPage2() {
-		return "index2";
-	}
-
 	@GetMapping("/home")
 	public String getIndexPage3() {
 		return "home";
