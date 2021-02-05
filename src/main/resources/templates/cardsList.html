@@ -47,11 +47,9 @@
 <br />
 <br />
 
-<div class="container" style="background-color: white">
-	<div class="row" align=center style="background-color: yellow; font-size:20px; font-weight:bold">
-		<div class="border col-lg-2">
-			<a class="p-2" th:href="@{'/cards'+'?fieldName=cardName'}" >Card name</a>
-		</div>
+<div class="container" style="background-color: #a5b3c9;" >
+	<div class="row" align=center style="font-size:20px; font-weight:bold">
+		<div class="border col-lg-2">Card name</div>
 		<div class="border col-lg-1" >Balance</div>
 		<div class="border col-lg-1" >Valid</div>
 		<div class="border col-lg-2" >Lock status</div>
@@ -65,7 +63,7 @@
 		<div class="border col-lg-2" th:text="${userCards.lock}"></div>
 		<div class="border col-lg-6">
 			<div class="btn-group">
-				<a class="btn btn-link" th:href="@{/card/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_USER')">Choose</a>
+				<a class="btn btn-secondary" th:href="@{/card/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_USER')">Choose</a>
 				<a th:href="@{/card/lock/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-warning"  >Lock card </a>
 				<a th:href="@{/card/unlock/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-info"  >Unlock card </a>
 				<a>    </a>
@@ -74,7 +72,6 @@
 				<a  class="btn btn-secondary" th:href="@{/card/edit/{id}(id=${userCards.id})}" sec:authorize="hasRole('ROLE_ADMIN')" >Edit card </a>
 		</div>
 	</div>
-
 </div>
 
 <br />

@@ -42,8 +42,8 @@
 	<a href="/contact">Contact Us</a>
 </div>
 
-	<div class="container" style="background-color: white;">
-		<div class="row">
+	<<div class="container" style="background-color: #a5b3c9;" >
+	<div class="row" align=center style="font-size:20px; font-weight:bold">
 			<div class="border col-lg-1">Image</div>
 			<div class="border col-lg-1">Id</div>
 			<div class="border col-lg-2">
@@ -51,7 +51,7 @@
 			</div>
 			<div class="border col-lg-2" th:text="#{label.lastname}">Lastname</div>
 			<div class="border col-lg-1" >Edit</div>
-			<div class="border col-lg-4" >Upload
+			<div class="border col-lg-5" >Upload
 				img</div>
 		</div>
 
@@ -69,16 +69,17 @@
 					th:href="@{/users/edit/{uid}(uid=${user.id})}">Edit</a>
 			</div>
 
-			<div class="border col-lg-4">
+			<div class="border col-lg-5" align="center">
 				<form method="POST" enctype="multipart/form-data"
 					th:action="@{/users/{uid}/img(uid=${user.id})}">
-					<!-- <div class="custom-file">    class="custom-file-input" class="custom-file-label"--><div class="custom-file">
-						<div class="col-lg-7 p-2">
+					<!-- <div class="custom-file">    class="custom-file-input" class="custom-file-label"-->
+					<div class="custom-file">
+						<div class="col-lg-7 p-2" >
 							<input class="custom-file-input" type="file" name="file"
 								id="inputGroupFile03"> <label class="custom-file-label"
 								for="inputGroupFile03">Choose file</label>
+							<input type="submit" value="Upload" />
 						</div>
-						<input type="submit" value="Upload" />
 					</div>
 				</form>
 			</div>

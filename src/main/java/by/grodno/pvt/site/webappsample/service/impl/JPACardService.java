@@ -32,16 +32,6 @@ public class JPACardService implements CardService, InitializingBean {
         return cardRepo.getOne(id);
     }
 
-//    @Override                                            /одно и тоже что getCard()
-//    public UserCards getCardName(Integer id) {
-//        return cardRepo.getOne(id);
-//    }
-//
-//    @Override
-//    public UserCards getCardBalance(Integer id) {
-//    return cardRepo.getOne(id);
-//    }
-
     @Override
     public void addCard(List<UserCards> cards) {
         cardRepo.saveAll(cards);
@@ -58,17 +48,19 @@ public class JPACardService implements CardService, InitializingBean {
     public void edit(CardDTO cardDTO) {
         UserCards findById = cardRepo.findById(cardDTO.getId()).orElseThrow(() -> new UserNotFoundException());
         findById.setCardName(cardDTO.getCardName());
+        findById.setCardNumber(cardDTO.getCardNumber());
         findById.setBalance(cardDTO.getBalance());
         findById.setValid(cardDTO.getValid());
+        findById.setCvv(cardDTO.getCvv());
         findById.setLock(cardDTO.getLock());
         cardRepo.save(findById);
     }
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        cardRepo.save(new UserCards(null, "Visa", "0123 4564 0044 9874", 220.0, 2025, 123 , true,null));
-        cardRepo.save(new UserCards(null, "Maestro","1111 2222 3333 4444", 999.1, 2030,312 ,true,null));
-        cardRepo.save(new UserCards(null, "BelCard","9999 5555 6666 0123", 10.5, 2022,234,false,null));
+        cardRepo.save(new UserCards(null, "Visa", "0123-4564-0044-9874", 220.0, 2025, 123 , true,null));
+        cardRepo.save(new UserCards(null, "Maestro","1111-2222-3333-4444", 999.1, 2030,312 ,true,null));
+        cardRepo.save(new UserCards(null, "BelCard","9999-5555-6666-0123", 10.5, 2022,234,false,null));
     }
 
     @Override
@@ -84,11 +76,5 @@ public class JPACardService implements CardService, InitializingBean {
     public void updateStatusCard(boolean lock, Integer id) {
         cardRepo.updateStatusCard(lock, id);
     }
-
-    @Override
-    public void editCard(UserCards card) {
-        cardRepo.save(card);
-    }
-
 
 }

@@ -11,10 +11,6 @@ public interface CardService {
 
     UserCards getCard(Integer id);
 
-//    UserCards getCardName(Integer id);
-//
-//    UserCards getCardBalance(Integer id);
-
     void addCard(List<UserCards> cards);
 
     void saveCard(UserCards cards);
@@ -28,8 +24,5 @@ public interface CardService {
     void updateBalanceMinus(Double balance, Integer id);
 
     void updateStatusCard(boolean lock, Integer id);
-
-    void editCard(UserCards card);
-
 
 }

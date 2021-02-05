@@ -33,4 +33,5 @@ public class UserCards {
 	@OneToMany(mappedBy = "userCards")
 	private List<Transactions> transactions;
 
+
 }

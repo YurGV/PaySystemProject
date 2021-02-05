@@ -1,12 +1,9 @@
 package by.grodno.pvt.site.webappsample.controller;
 
-
 import by.grodno.pvt.site.webappsample.domain.Transactions;
-import by.grodno.pvt.site.webappsample.domain.User;
 import by.grodno.pvt.site.webappsample.domain.UserCards;
 import by.grodno.pvt.site.webappsample.dto.CardDTO;
 import by.grodno.pvt.site.webappsample.dto.TransactionsDTO;
-import by.grodno.pvt.site.webappsample.dto.UserRegistrationDTO;
 import by.grodno.pvt.site.webappsample.service.CardService;
 import by.grodno.pvt.site.webappsample.service.EmailService;
 import by.grodno.pvt.site.webappsample.service.TransactionsService;
@@ -17,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,7 +21,6 @@ import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @Controller
 public class CardController {
@@ -66,25 +61,24 @@ public class CardController {
         return "cardDataEdit";
     }
     @PostMapping("/cards/edit/{id}")
-    public String editCard(
-            @PathVariable Integer id,
-            @RequestParam(value="cardName") String cardName,
-            @RequestParam(value="balance") Double balance,
-            @RequestParam(value="valid") Integer valid,
-            @RequestParam(value="lock") Boolean lock)
+    public String editCard(@PathVariable Integer id, CardDTO cardDTO, Model model)
+
     {
+        model.addAttribute("cardDTO", cardDTO);
 
-        UserCards card = new UserCards();
-        card.setId(id);
-        card.setCardName(cardName);
-        card.setBalance(balance);
-        card.setValid(valid);
-        card.setLock(lock);
+        UserCards userCards = new UserCards();
+        userCards.setId(id);
+        userCards.setCardName(cardDTO.getCardName());
+        userCards.setCardNumber(cardDTO.getCardNumber());
+        userCards.setBalance(cardDTO.getBalance());
+        userCards.setValid(cardDTO.getValid());
+        userCards.setCvv(cardDTO.getCvv());
+        userCards.setLock(cardDTO.getLock());
 
-
-        cardService.editCard(card);
+        cardService.edit(cardDTO);
         return "redirect:/cards";
     }
+
 
     @GetMapping(value = "/cards/addCard")
     public String createCardForm(UserCards userCards, Model model) {
@@ -137,7 +131,7 @@ public class CardController {
         trans.setValue(balance);
         trans.setUserCards(cardService.getCard(id));
         transService.saveTrans(trans);
-        emailService.sendTransactionEmail(userService.getUser(4)); //id надо сделать динамической!!!!!!!!
+        emailService.sendTransactionEmail(userService.getUser(4));
         return "redirect:/cards";
     }
 
@@ -169,7 +163,7 @@ public class CardController {
         trans.setUserCards(cardService.getCard(id));                //сначала получаем карту, а затем вытаскиваем из неё данные
         if (balance > trans.getUserCards().getBalance()) {
             System.out.println("STOP");
-            return "redirect:/card/transfer/{id}";                  //надо добавить Exepsion
+            return "redirect:/card/transfer/{id}";
         }
         trans.setValue(balance);
         transService.saveTrans(trans);
